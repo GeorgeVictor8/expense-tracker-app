@@ -94,7 +94,7 @@ export default function CustomizedTables() {
           ) : (
             <StyledTableRow>
               <StyledTableCell colSpan={12}>
-                <Typography align="center" variant="h3">
+                <Typography align="center" variant="h4">
                   No Expenses Logged
                 </Typography>
               </StyledTableCell>

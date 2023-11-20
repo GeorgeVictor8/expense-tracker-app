@@ -1,37 +1,17 @@
-import {
-  Card,
-  Typography,
-  Grid,
-  TextField,
-  Button,
-  MenuItem,
-} from "@mui/material";
+import {Card , Typography , Grid , TextField , Button , MenuItem,} from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  addCategory,
-  removeCategory,
-} from "../../Redux/Features/Slices/CategoriesSlice";
-
 import { DemoContainer } from "@mui/x-date-pickers/internals/demo";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import CategoryModal from "../Modals/CategoryModal";
 import { useState } from "react";
-import {
-  Expenses,
-  ExpensesSlice,
-} from "../../Redux/Features/Slices/ExpensesFormSlice";
+import { Expenses , ExpensesSlice} from "../../Redux/Features/Slices/ExpensesFormSlice";
 import React from "react";
 import { v4 as uuidv4 } from "uuid";
 import { RootState } from "../../Redux/Features/store";
 
 export default function ExpensesForm() {
-  const dispatch = useDispatch();
-  const Category = useSelector(
-    (state: RootState) => state.Categories.Categories
-  );
-
   const [purchase, setPurchase] = useState("");
   const [category, setCategory] = useState("");
   const [cost, setCost] = useState("");
@@ -39,6 +19,11 @@ export default function ExpensesForm() {
   const [date, setDate] = useState("");
   const [categoryKey, setCategoryKey] = useState(0);
   const [dateKey, setDateKey] = useState(0);
+
+  const dispatch = useDispatch();
+  const Category = useSelector(
+    (state: RootState) => state.Categories.Categories
+  );
 
   const onSubmitHandler = (e: any) => {
     e.preventDefault();
@@ -143,9 +128,6 @@ export default function ExpensesForm() {
                 ))}
               </TextField>
               <CategoryModal />
-              {/* <Button style={{ margin: "10px" }}>
-                <AddCircleIcon />
-              </Button> */}
             </Grid>
 
             <Grid xs={12} sm={6} item>
