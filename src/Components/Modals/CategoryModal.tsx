@@ -58,7 +58,7 @@ export default function TransitionsModal() {
                   fullWidth
                   required
                 />
-               <Grid container spacing={2}>
+                <Grid container spacing={2}>
                   <Grid xs={12} sm={6} item>
                     <Button
                       type="submit"
@@ -66,7 +66,7 @@ export default function TransitionsModal() {
                       color="primary"
                       fullWidth
                     >
-                      Submit
+                      Add Category
                     </Button>
                   </Grid>
                   <Grid xs={12} sm={6} item>
