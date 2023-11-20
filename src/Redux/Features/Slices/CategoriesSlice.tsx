@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 export interface Category {
-  id: number;
+  id: string;
   name: string;
 }
 
@@ -11,11 +11,11 @@ export interface CategoriesState {
 
 const initialState: CategoriesState = {
   Categories: [
-    { id: 1, name: "Groceries" },
-    { id: 2, name: "Transportation" },
-    { id: 3, name: "Entertainment" },
-    { id: 4, name: "Living Expenses" },
-    { id: 5, name: "Fun" },
+    { id: "1", name: "Groceries" },
+    { id: "2", name: "Transportation" },
+    { id: "3", name: "Entertainment" },
+    { id: "4", name: "Living Expenses" },
+    { id: "5", name: "Fun" },
   ],
 };
 export const CategoriesSlice = createSlice({
@@ -25,7 +25,7 @@ export const CategoriesSlice = createSlice({
     addCategory: (state, action: PayloadAction<Category>) => {
       state.Categories.push(action.payload);
     },
-    removeCategory: (state, action: PayloadAction<number>) => {
+    removeCategory: (state, action: PayloadAction<string>) => {
       state.Categories = state.Categories.filter(
         (Category) => Category.id !== action.payload
       );
