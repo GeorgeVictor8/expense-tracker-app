@@ -81,7 +81,7 @@ export default function TransitionsModal() {
                       color="primary"
                       fullWidth
                     >
-                      Submit
+                      Add Balance
                     </Button>
                   </Grid>
                   <Grid xs={12} sm={6} item>

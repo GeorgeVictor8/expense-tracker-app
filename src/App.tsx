@@ -1,14 +1,13 @@
-import ExpensesForm from './Components/ExpensesForm/ExpensesForm'
-import Balance from './Components/ExpensesForm/Balance'
-import Info from './Components/History/Info'
-
+import ExpensesForm from "./Components/ExpensesForm/ExpensesForm";
+import Balance from "./Components/ExpensesForm/Balance";
+import ExpensesLog from "./Components/History/ExpensesLog";
 
 function App() {
   return (
     <>
-    <ExpensesForm/>
-    <Balance/>
-    <Info/>
+      <ExpensesForm />
+      <Balance />
+      <ExpensesLog />
     </>
   );
 }
