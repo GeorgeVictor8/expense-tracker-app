@@ -23,23 +23,6 @@ export interface AllExpensesState {
 const initialState: AllExpensesState = {
   allExpenses: [],
   allIncome: [],
-  //   Categories: [
-  //     {
-  //       Category: "Groceries",
-  //     },
-  //     {
-  //       Category: "Transportation",
-  //     },
-  //     {
-  //       Category: "Entertainment",
-  //     },
-  //     {
-  //       Category: "Living Expenses",
-  //     },
-  //     {
-  //       Category: "Fun",
-  //     },
-  //   ],
 };
 
 export const ExpensesSlice = createSlice({

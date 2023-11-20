@@ -6,46 +6,37 @@ import {
   Button,
   MenuItem,
 } from "@mui/material";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  addCategory,
+  removeCategory,
+} from "../../Redux/Features/Slices/CategoriesSlice";
+
 import { DemoContainer } from "@mui/x-date-pickers/internals/demo";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import CategoryModal from "../Modals/CategoryModal";
 import { useState } from "react";
-import { useDispatch } from "react-redux";
 import {
   Expenses,
   ExpensesSlice,
 } from "../../Redux/Features/Slices/ExpensesFormSlice";
 import React from "react";
 import { v4 as uuidv4 } from "uuid";
-
-const categories = [
-  {
-    Category: "Groceries",
-  },
-  {
-    Category: "Transportation",
-  },
-  {
-    Category: "Entertainment",
-  },
-  {
-    Category: "Living Expenses",
-  },
-  {
-    Category: "Fun",
-  },
-];
+import { RootState } from "../../Redux/Features/store";
 
 export default function ExpensesForm() {
+  const dispatch = useDispatch();
+  const Category = useSelector(
+    (state: RootState) => state.Categories.Categories
+  );
+
   const [purchase, setPurchase] = useState("");
   const [category, setCategory] = useState("");
   const [cost, setCost] = useState("");
   const [notes, setNotes] = useState("");
   const [date, setDate] = useState("");
-
-  const dispatch = useDispatch();
   const [categoryKey, setCategoryKey] = useState(0);
   const [dateKey, setDateKey] = useState(0);
 
@@ -66,8 +57,8 @@ export default function ExpensesForm() {
     setPurchase("");
     setCost("");
     setNotes("");
-    resetCategoryPicker(); // Custom function to reset Category picker
-    resetDatePicker(); // Custom function to reset Date picker
+    resetCategoryPicker();
+    resetDatePicker();
   };
 
   const resetCategoryPicker = () => {
@@ -139,15 +130,15 @@ export default function ExpensesForm() {
                 helperText="Please select your Category"
                 required
               >
-                {categories.map((option) => (
+                {Category.map((option: any) => (
                   <MenuItem
-                    key={option.Category}
-                    value={option.Category}
+                    key={option.id}
+                    value={option.name}
                     onClick={() => {
-                      setCategory(option.Category);
+                      setCategory(option.name);
                     }}
                   >
-                    {option.Category}
+                    {option.name}
                   </MenuItem>
                 ))}
               </TextField>

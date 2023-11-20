@@ -20,6 +20,17 @@ const style = {
 };
 
 export default function TransitionsModal() {
+
+    // Function to handle adding a new category
+  // const handleAddCategory = (newCategory: any) => {
+  //   dispatch(addCategory(newCategory));
+  // };
+
+  // // Function to handle removing a category
+  // const handleRemoveCategory = (categoryId: any) => {
+  //   dispatch(removeCategory(categoryId));
+  // };
+
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
