@@ -6,6 +6,12 @@ import Fade from "@mui/material/Fade";
 import Button from "@mui/material/Button";
 import AddCircleIcon from "@mui/icons-material/AddCircle";
 import { Grid, Stack, TextField } from "@mui/material";
+import { useDispatch } from "react-redux";
+import {
+  addCategory,
+  removeCategory,
+} from "../../Redux/Features/Slices/CategoriesSlice";
+import { v4 as uuidv4 } from "uuid";
 
 const style = {
   position: "absolute" as "absolute",
@@ -20,16 +26,22 @@ const style = {
 };
 
 export default function TransitionsModal() {
+  const dispatch = useDispatch();
+  const [categoryName, setCategoryName] = React.useState("");
 
-    // Function to handle adding a new category
-  // const handleAddCategory = (newCategory: any) => {
-  //   dispatch(addCategory(newCategory));
-  // };
+  const handleRemoveCategory = (categoryId: string) => {
+    dispatch(removeCategory(categoryId));
+  };
 
-  // // Function to handle removing a category
-  // const handleRemoveCategory = (categoryId: any) => {
-  //   dispatch(removeCategory(categoryId));
-  // };
+  const onAddHandler = () => {
+    const newCategory = {
+      id: uuidv4(),
+      name: categoryName,
+    };
+
+    dispatch(addCategory(newCategory));
+    handleClose();
+  };
 
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
@@ -55,39 +67,44 @@ export default function TransitionsModal() {
       >
         <Fade in={open}>
           <Box sx={style}>
-            <form>
-              <Stack
-                spacing={{ xs: 1, sm: 2 }}
-                direction="row"
-                useFlexGap
-                flexWrap="wrap"
-              >
-                <TextField
-                  label="Category"
-                  placeholder="Enter your new Category"
-                  variant="outlined"
-                  fullWidth
-                  required
-                />
-                <Grid container spacing={2}>
-                  <Grid xs={12} sm={6} item>
-                    <Button
-                      type="submit"
-                      variant="contained"
-                      color="primary"
-                      fullWidth
-                    >
-                      Add Category
-                    </Button>
-                  </Grid>
-                  <Grid xs={12} sm={6} item>
-                    <Button variant="outlined" color="error" fullWidth>
-                      Cancel
-                    </Button>
-                  </Grid>
+            <Stack
+              spacing={{ xs: 1, sm: 2 }}
+              direction="row"
+              useFlexGap
+              flexWrap="wrap"
+            >
+              <TextField
+                label="Category"
+                placeholder="Enter your new Category"
+                variant="outlined"
+                fullWidth
+                required
+                onChange={(e) => setCategoryName(e.target.value)}
+              />
+              <Grid container spacing={2}>
+                <Grid xs={12} sm={6} item>
+                  <Button
+                    onClick={onAddHandler}
+                    type="submit"
+                    variant="contained"
+                    color="primary"
+                    fullWidth
+                  >
+                    Add Category
+                  </Button>
                 </Grid>
-              </Stack>
-            </form>
+                <Grid xs={12} sm={6} item>
+                  <Button
+                    onClick={handleClose}
+                    variant="outlined"
+                    color="error"
+                    fullWidth
+                  >
+                    Cancel
+                  </Button>
+                </Grid>
+              </Grid>
+            </Stack>
           </Box>
         </Fade>
       </Modal>

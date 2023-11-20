@@ -17,12 +17,10 @@ export interface Balance {
 
 export interface AllExpensesState {
   allExpenses: Expenses[];
-  allIncome: Balance[];
 }
 
 const initialState: AllExpensesState = {
   allExpenses: [],
-  allIncome: [],
 };
 
 export const ExpensesSlice = createSlice({
