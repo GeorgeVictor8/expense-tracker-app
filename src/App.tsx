@@ -7,8 +7,8 @@ function App() {
     <>
       <div className="overlay">
         <ExpensesForm />
-        <Balance />
         <ExpensesLog />
+        <Balance />
       </div>
     </>
   );

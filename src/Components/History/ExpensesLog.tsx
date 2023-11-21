@@ -52,11 +52,19 @@ export default function CustomizedTables() {
   useEffect(() => {}, [Expense]);
 
   return (
-    <TableContainer component={Paper} style={{
-      maxWidth: 800,
-      margin: "3rem auto",
-      padding: "0 1rem",
-    }} sx={{ maxWidth: 800 }}>
+    <TableContainer
+      component={Paper}
+      style={{
+        maxWidth: 800,
+        margin: "3rem auto",
+        padding: "0 1rem",
+      }}
+      sx={{ maxWidth: 800 }}
+      
+    >
+       <Typography variant="h6" align="center" gutterBottom>
+        Your Saved Expenses are Logged in This table
+      </Typography>
       <Table
         sx={{ maxWidth: 700 }}
         aria-label="customized table"
@@ -65,6 +73,7 @@ export default function CustomizedTables() {
           margin: "3rem auto",
         }}
       >
+       
         <TableHead>
           <TableRow>
             <StyledTableCell colSpan={1}>Item</StyledTableCell>

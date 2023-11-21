@@ -35,15 +35,15 @@ export default function Balance() {
         sx={{
           display: "flex",
           flexDirection: "row",
-          flexWrap: 'wrap',
-          justifyContent: "center"
+          flexWrap: "wrap",
+          justifyContent: "center",
         }}
       >
         <IncomeLog />
         <Card
           style={{
             minWidth: 600,
-            maxWidth:600,
+            maxWidth: 600,
             maxHeight: 100,
             margin: "3rem 2%",
             padding: "1.5rem 1rem",

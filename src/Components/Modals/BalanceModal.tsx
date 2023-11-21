@@ -28,10 +28,10 @@ export default function TransitionsModal() {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
- 
+
   const [description, setDescription] = useState<string>();
-  const [ amount, setAmount] = useState<number>();
-  
+  const [amount, setAmount] = useState<number>();
+
   const onHandleIncome = () => {
     const newIncome: Balance = {
       Amount: Number(amount),
