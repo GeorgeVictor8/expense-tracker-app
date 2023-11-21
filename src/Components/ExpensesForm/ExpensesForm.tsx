@@ -79,12 +79,12 @@ export default function ExpensesForm() {
 
   return (
     <>
-      <Grid container spacing={1}>
+      {/* <Grid container spacing={1}>
         <Grid item xs={12} sm={12} xl={2}>
-          <IncomeLog />
-        </Grid>
+          
+        </Grid> */}
 
-        <Grid item xs={12} sm={12} xl={8}>
+        {/* <Grid item xs={12} sm={12} xl={8}> */}
           <Card
             style={{
               maxWidth: 800,
@@ -205,8 +205,8 @@ export default function ExpensesForm() {
               </Grid>
             </form>
           </Card>
-        </Grid>
-      </Grid>
+        {/* </Grid> */}
+      {/* </Grid> */}
     </>
   );
 }

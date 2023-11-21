@@ -57,7 +57,7 @@ function TablePaginationActions(props: TablePaginationActionsProps) {
   };
 
   return (
-    <Box sx={{ flexShrink: 0, ml: 2.5 }}>
+    <Box >
       <IconButton
         onClick={handleFirstPageButtonClick}
         disabled={page === 0}
@@ -125,11 +125,9 @@ export default function CustomPaginationActionsTable() {
   return (
     <TableContainer
       component={Paper}
-      sx={{ maxWidth: 500 }}
       style={{
-        maxWidth: 800,
+        maxWidth: 700,
         margin: "2rem",
-        marginTop: "9rem",
         padding: "1.5rem 1rem",
       }}
     >
