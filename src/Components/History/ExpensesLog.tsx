@@ -52,14 +52,17 @@ export default function CustomizedTables() {
   useEffect(() => {}, [Expense]);
 
   return (
-    <TableContainer component={Paper}>
+    <TableContainer component={Paper} style={{
+      maxWidth: 800,
+      margin: "3rem auto",
+      padding: "0 1rem",
+    }} sx={{ maxWidth: 800 }}>
       <Table
-        sx={{ minWidth: 700 }}
+        sx={{ maxWidth: 700 }}
         aria-label="customized table"
         style={{
           maxWidth: 800,
           margin: "3rem auto",
-          padding: "1.5rem 1rem",
         }}
       >
         <TableHead>

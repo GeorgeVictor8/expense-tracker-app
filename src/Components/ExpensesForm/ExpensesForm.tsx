@@ -80,8 +80,8 @@ export default function ExpensesForm() {
   return (
     <>
       <Grid container spacing={1}>
-      <Grid item xs={12} sm={12} xl={2}>
-          <IncomeLog  />
+        <Grid item xs={12} sm={12} xl={2}>
+          <IncomeLog />
         </Grid>
 
         <Grid item xs={12} sm={12} xl={8}>

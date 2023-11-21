@@ -53,7 +53,7 @@ export default function Balance() {
                 Remaining Balance: ${remainingBalance}
               </Typography>
             ) : (
-              <Typography align="right" gutterBottom variant="h5">
+              <Typography align="right" gutterBottom variant="h5" color="green">
                 Remaining Balance: ${remainingBalance}
               </Typography>
             )}

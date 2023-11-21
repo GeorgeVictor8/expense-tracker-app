@@ -5,9 +5,11 @@ import ExpensesLog from "./Components/History/ExpensesLog";
 function App() {
   return (
     <>
-      <ExpensesForm />
-      <Balance />
-      <ExpensesLog />
+      <div className="overlay">
+        <ExpensesForm />
+        <Balance />
+        <ExpensesLog />
+      </div>
     </>
   );
 }
