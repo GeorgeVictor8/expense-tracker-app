@@ -60,9 +60,15 @@ export default function CustomizedTables() {
         padding: "0 1rem",
       }}
       sx={{ maxWidth: 800 }}
-      
     >
-       <Typography variant="h6" align="center" gutterBottom>
+      <Typography
+        style={{
+          padding: "1rem",
+        }}
+        variant="h6"
+        align="center"
+        gutterBottom
+      >
         Your Saved Expenses are Logged in This table
       </Typography>
       <Table
@@ -73,7 +79,6 @@ export default function CustomizedTables() {
           margin: "3rem auto",
         }}
       >
-       
         <TableHead>
           <TableRow>
             <StyledTableCell colSpan={1}>Item</StyledTableCell>
