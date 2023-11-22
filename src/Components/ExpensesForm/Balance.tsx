@@ -1,11 +1,13 @@
-import { Card, Typography, Grid, Button, Stack } from "@mui/material";
+import { Card, Typography, Grid, Stack, Button } from "@mui/material";
 import BalanceModal from "../Modals/BalanceModal";
 import { useSelector } from "react-redux";
 import { RootState } from "../../Redux/Features/store";
 import IncomeLog from "../History/IncomeLog";
+import { Link } from "react-router-dom";
 
 export default function Balance() {
   const Balance = useSelector((state: RootState) => state.Balance.allIncome);
+
 
   const expenses = useSelector(
     (state: RootState) => state.Expenses.allExpenses
@@ -15,6 +17,7 @@ export default function Balance() {
     let total = 0;
     expenses.map((expense) => {
       total += expense.Cost;
+      return null;
     });
     return total;
   };
@@ -23,6 +26,7 @@ export default function Balance() {
     let total = 0;
     Balance.map((income) => {
       total += income.Amount;
+      return null;
     });
     return total;
   };
@@ -44,9 +48,9 @@ export default function Balance() {
           style={{
             minWidth: 600,
             maxWidth: 600,
-            maxHeight: 100,
+            maxHeight: 150,
             margin: "3rem 2%",
-            padding: "1.5rem 1rem",
+            padding: "2rem 1rem",
           }}
         >
           <Grid container spacing={2}>
@@ -79,6 +83,13 @@ export default function Balance() {
                   Remaining Balance: ${remainingBalance}
                 </Typography>
               )}
+              <Typography align="right" >
+                <Link to="/statistics">
+                  <Button variant="contained" color="success">
+                    Check Statistics
+                  </Button>
+                </Link>
+              </Typography>
             </Grid>
           </Grid>
         </Card>

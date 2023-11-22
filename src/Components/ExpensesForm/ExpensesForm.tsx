@@ -20,7 +20,6 @@ import {
 import React from "react";
 import { v4 as uuidv4 } from "uuid";
 import { RootState } from "../../Redux/Features/store";
-import IncomeLog from "../History/IncomeLog";
 
 export default function ExpensesForm() {
   const [purchase, setPurchase] = useState("");
@@ -30,11 +29,36 @@ export default function ExpensesForm() {
   const [date, setDate] = useState("");
   const [categoryKey, setCategoryKey] = useState(0);
   const [dateKey, setDateKey] = useState(0);
-
+  const [cleared, setCleared] = React.useState<boolean>(false);
   const dispatch = useDispatch();
   const Category = useSelector(
     (state: RootState) => state.Categories.Categories
   );
+
+  const setHandler = (
+    setState: React.Dispatch<React.SetStateAction<string>>
+  ) => {
+    return (e: React.ChangeEvent<HTMLInputElement>) => {
+      setState(e.target.value);
+    };
+  };
+
+  const resetCategoryPicker = () => {
+    setCategory("");
+  };
+
+  const resetDatePicker = () => {
+    setDate("");
+  };
+
+  const handleDateChange = (newDate: Date | null) => {
+    if (newDate !== null) {
+      const selectedDate = new Date(newDate);
+      var string = selectedDate.toLocaleDateString();
+      var arr = string.split(":");
+      setDate(arr[0]);
+    }
+  };
 
   const onSubmitHandler = (e: any) => {
     e.preventDefault();
@@ -57,15 +81,6 @@ export default function ExpensesForm() {
     resetDatePicker();
   };
 
-  const resetCategoryPicker = () => {
-    setCategory("");
-  };
-
-  const resetDatePicker = () => {
-    setDate("");
-  };
-  const [cleared, setCleared] = React.useState<boolean>(false);
-
   React.useEffect(() => {
     if (cleared) {
       const timeout = setTimeout(() => {
@@ -79,134 +94,119 @@ export default function ExpensesForm() {
 
   return (
     <>
-      {/* <Grid container spacing={1}>
-        <Grid item xs={12} sm={12} xl={2}>
-          
-        </Grid> */}
+      <Card
+        style={{
+          maxWidth: 800,
+          margin: "3rem auto",
+          padding: "1.5rem 1rem",
+        }}
+      >
+        <Typography align="center" gutterBottom variant="h3">
+          Expenses Tracker
+        </Typography>
 
-        {/* <Grid item xs={12} sm={12} xl={8}> */}
-          <Card
-            style={{
-              maxWidth: 800,
-              margin: "3rem auto",
-              padding: "1.5rem 1rem",
-            }}
-          >
-            <Typography align="center" gutterBottom variant="h3">
-              Expenses Tracker
-            </Typography>
+        <form onSubmit={onSubmitHandler}>
+          <Grid container spacing={2}>
+            <Grid xs={12} sm={6} item>
+              <TextField
+                label="Purchase"
+                placeholder="Enter your Purchase"
+                variant="outlined"
+                fullWidth
+                required
+                onChange={setHandler(setPurchase)}
+                value={purchase}
+              />
+            </Grid>
 
-            <form onSubmit={onSubmitHandler}>
-              <Grid container spacing={2}>
-                <Grid xs={12} sm={6} item>
-                  <TextField
-                    label="Purchase"
-                    placeholder="Enter your Purchase"
-                    variant="outlined"
-                    fullWidth
-                    required
-                    onChange={(e) => setPurchase(e.target.value)}
-                    value={purchase}
-                  />
-                </Grid>
+            <Grid xs={12} sm={6} item>
+              <TextField
+                type="number"
+                label="Cost"
+                placeholder="Enter your Cost"
+                variant="outlined"
+                fullWidth
+                required
+                onChange={setHandler(setCost)}
+                value={cost}
+              />
+            </Grid>
 
-                <Grid xs={12} sm={6} item>
-                  <TextField
-                    type="number"
-                    label="Cost"
-                    placeholder="Enter your Cost"
-                    variant="outlined"
-                    fullWidth
-                    required
-                    onChange={(e) => setCost(e.target.value)}
-                    value={cost}
-                  />
-                </Grid>
-
-                <Grid xs={12} sm={6} item>
-                  <TextField
-                    key={categoryKey}
-                    select
-                    label="Select Category"
-                    defaultValue={""}
-                    helperText="Please select your Category"
-                    required
+            <Grid xs={12} sm={6} item>
+              <TextField
+                key={categoryKey}
+                select
+                label="Select Category"
+                defaultValue={""}
+                helperText="Please select your Category"
+                required
+              >
+                {Category.map((option: any) => (
+                  <MenuItem
+                    key={option.id}
+                    value={option.name}
+                    onClick={() => {
+                      setCategory(option.name);
+                    }}
                   >
-                    {Category.map((option: any) => (
-                      <MenuItem
-                        key={option.id}
-                        value={option.name}
-                        onClick={() => {
-                          setCategory(option.name);
-                        }}
-                      >
-                        {option.name}
-                      </MenuItem>
-                    ))}
-                  </TextField>
-                  <CategoryModal />
-                </Grid>
+                    {option.name}
+                  </MenuItem>
+                ))}
+              </TextField>
+              <CategoryModal />
+            </Grid>
 
-                <Grid xs={12} sm={6} item>
-                  <LocalizationProvider
-                    dateAdapter={AdapterDayjs}
-                    adapterLocale="de"
-                    key={dateKey}
-                  >
-                    <DemoContainer components={["DatePicker"]}>
-                      <DatePicker
-                        label="Pick Date"
-                        slotProps={{
-                          field: {
-                            clearable: true,
-                            onClear: () => setCleared(true),
-                          },
-                          textField: {
-                            required: true,
-                          },
-                        }}
-                        onChange={(newDate: Date | null) => {
-                          if (newDate !== null) {
-                            const selectedDate = new Date(newDate);
-                            var string = selectedDate.toLocaleDateString();
-                            var arr = string.split(":");
-                            setDate(arr[0]);
-                          }
-                        }}
-                      />
-                    </DemoContainer>
-                  </LocalizationProvider>
-                </Grid>
-
-                <Grid xs={12} item>
-                  <TextField
-                    type="Message"
-                    label="Type Any Additional Notes Here"
-                    placeholder="Enter Notes"
-                    variant="outlined"
-                    fullWidth
-                    multiline
-                    rows={4}
-                    value={notes}
-                    onChange={(e) => setNotes(e.target.value)}
+            <Grid xs={12} sm={6} item>
+              <LocalizationProvider
+                dateAdapter={AdapterDayjs}
+                adapterLocale="de"
+                key={dateKey}
+              >
+                <DemoContainer components={["DatePicker"]}>
+                  <DatePicker
+                    label="Pick Date"
+                    slotProps={{
+                      field: {
+                        clearable: true,
+                        onClear: () => setCleared(true),
+                      },
+                      textField: {
+                        required: true,
+                      },
+                    }}
+                    onChange={handleDateChange}
                   />
-                </Grid>
+                </DemoContainer>
+              </LocalizationProvider>
+            </Grid>
 
-                <Grid xs={3} item sx={{ margin: "0px auto" }}>
-                  <Button
-                    type="submit"
-                    variant="contained"
-                    color="primary"
-                    fullWidth
-                  >
-                    Save Expense
-                  </Button>
-                </Grid>
-              </Grid>
-            </form>
-          </Card>
-        {/* </Grid> */}
-      {/* </Grid> */}
+            <Grid xs={12} item>
+              <TextField
+                type="Message"
+                label="Type Any Additional Notes Here"
+                placeholder="Enter Notes"
+                variant="outlined"
+                fullWidth
+                multiline
+                rows={4}
+                value={notes}
+                onChange={setHandler(setNotes)}
+              />
+            </Grid>
+
+            <Grid xs={3} item sx={{ margin: "0px auto" }}>
+              <Button
+                type="submit"
+                variant="contained"
+                color="primary"
+                fullWidth
+              >
+                Save Expense
+              </Button>
+            </Grid>
+          </Grid>
+        </form>
+      </Card>
     </>
   );
 }
