@@ -25,14 +25,15 @@ const style = {
 
 export default function TransitionsModal() {
   const dispatch = useDispatch();
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
   const [description, setDescription] = useState<string>();
   const [amount, setAmount] = useState<number>();
 
-  const onHandleIncome = () => {
+  const onHandleIncome = (e: any) => {
+    e.preventDefault();
     const newIncome: Balance = {
       Amount: Number(amount),
       Description: description,
@@ -40,6 +41,12 @@ export default function TransitionsModal() {
 
     dispatch(updatingBalance(newIncome));
     handleClose();
+  };
+
+  const setHandler = (setState: React.Dispatch<React.SetStateAction<any>>) => {
+    return (e: React.ChangeEvent<HTMLInputElement>) => {
+      setState(e.target.value);
+    };
   };
 
   return (
@@ -62,61 +69,62 @@ export default function TransitionsModal() {
       >
         <Fade in={open}>
           <Box sx={style}>
-            <Stack
-              spacing={{ xs: 1, sm: 2 }}
-              direction="row"
-              useFlexGap
-              flexWrap="wrap"
-            >
-              <Grid container spacing={2}>
-                <Grid xs={12} sm={6} item>
-                  <TextField
-                    type="number"
-                    label="Amount"
-                    placeholder="Enter your Balance"
-                    variant="outlined"
-                    fullWidth
-                    required
-                    onChange={(e) => setAmount(Number(e.target.value))}
-                  />
+            <form onSubmit={onHandleIncome}>
+              <Stack
+                spacing={{ xs: 1, sm: 2 }}
+                direction="row"
+                useFlexGap
+                flexWrap="wrap"
+              >
+                <Grid container spacing={2}>
+                  <Grid xs={12} sm={6} item>
+                    <TextField
+                      type="number"
+                      label="Amount"
+                      placeholder="Enter your Balance"
+                      variant="outlined"
+                      fullWidth
+                      required
+                      onChange={setHandler(setAmount)}
+                    />
+                  </Grid>
+                  <Grid xs={12} sm={6} item>
+                    <TextField
+                      type="text"
+                      label="Description"
+                      placeholder="Balance Description"
+                      variant="outlined"
+                      fullWidth
+                      required
+                      onChange={setHandler(setDescription)}
+                    />
+                  </Grid>
                 </Grid>
-                <Grid xs={12} sm={6} item>
-                  <TextField
-                    type="text"
-                    label="Description"
-                    placeholder="Balance Description"
-                    variant="outlined"
-                    fullWidth
-                    required
-                    onChange={(e) => setDescription(e.target.value)}
-                  />
-                </Grid>
-              </Grid>
 
-              <Grid container spacing={2}>
-                <Grid xs={12} sm={6} item>
-                  <Button
-                    onClick={onHandleIncome}
-                    type="submit"
-                    variant="contained"
-                    color="primary"
-                    fullWidth
-                  >
-                    Add Balance
-                  </Button>
+                <Grid container spacing={2}>
+                  <Grid xs={12} sm={6} item>
+                    <Button
+                      type="submit"
+                      variant="contained"
+                      color="primary"
+                      fullWidth
+                    >
+                      Add Balance
+                    </Button>
+                  </Grid>
+                  <Grid xs={12} sm={6} item>
+                    <Button
+                      onClick={handleClose}
+                      variant="outlined"
+                      color="error"
+                      fullWidth
+                    >
+                      Cancel
+                    </Button>
+                  </Grid>
                 </Grid>
-                <Grid xs={12} sm={6} item>
-                  <Button
-                    onClick={handleClose}
-                    variant="outlined"
-                    color="error"
-                    fullWidth
-                  >
-                    Cancel
-                  </Button>
-                </Grid>
-              </Grid>
-            </Stack>
+              </Stack>
+            </form>
           </Box>
         </Fade>
       </Modal>

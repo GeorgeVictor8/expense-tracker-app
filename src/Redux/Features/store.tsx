@@ -2,12 +2,14 @@ import { configureStore } from "@reduxjs/toolkit";
 import { ExpensesSlice } from "./Slices/ExpensesFormSlice";
 import { CategoriesSlice } from "./Slices/CategoriesSlice"
 import { BalanceSlice } from "./Slices/BalanceSlice";
+import { SpendingSlice } from "./Slices/SpendingSlice";
 
 export const store = configureStore({
   reducer: {
     Expenses: ExpensesSlice.reducer,
     Categories: CategoriesSlice.reducer,
     Balance: BalanceSlice.reducer, 
+    Spending: SpendingSlice.reducer,
   },
 });
 

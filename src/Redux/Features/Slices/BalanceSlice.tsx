@@ -32,5 +32,20 @@ export const BalanceSlice = createSlice({
   },
 });
 
+export const calculateTotalBalance = (
+  allIncome: Balance[]
+): { data: { amount: number; description: string }[] } => {
+  const data: { amount: number; description: string }[] = [];
+
+  allIncome.forEach((income) => {
+    data.push({
+      amount: income.Amount,
+      description: income.Description || "No description",
+    });
+  });
+
+  return { data };
+};
+
 export const { updatingBalance } = BalanceSlice.actions;
 export default BalanceSlice.reducer;

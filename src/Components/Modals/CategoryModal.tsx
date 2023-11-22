@@ -1,4 +1,4 @@
-import * as React from "react";
+import React, { useState } from "react";
 import Backdrop from "@mui/material/Backdrop";
 import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
@@ -7,10 +7,7 @@ import Button from "@mui/material/Button";
 import AddCircleIcon from "@mui/icons-material/AddCircle";
 import { Grid, Stack, TextField } from "@mui/material";
 import { useDispatch } from "react-redux";
-import {
-  addCategory,
-  removeCategory,
-} from "../../Redux/Features/Slices/CategoriesSlice";
+import { addCategory } from "../../Redux/Features/Slices/CategoriesSlice";
 import { v4 as uuidv4 } from "uuid";
 
 const style = {
@@ -27,13 +24,10 @@ const style = {
 
 export default function TransitionsModal() {
   const dispatch = useDispatch();
-  const [categoryName, setCategoryName] = React.useState("");
+  const [categoryName, setCategoryName] = useState("");
 
-  const handleRemoveCategory = (categoryId: string) => {
-    dispatch(removeCategory(categoryId));
-  };
-
-  const onAddHandler = () => {
+  const onAddHandler = (e: any) => {
+    e.preventDefault();
     const newCategory = {
       id: uuidv4(),
       name: categoryName,
@@ -43,7 +37,7 @@ export default function TransitionsModal() {
     handleClose();
   };
 
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
@@ -67,44 +61,46 @@ export default function TransitionsModal() {
       >
         <Fade in={open}>
           <Box sx={style}>
-            <Stack
-              spacing={{ xs: 1, sm: 2 }}
-              direction="row"
-              useFlexGap
-              flexWrap="wrap"
-            >
-              <TextField
-                label="Category"
-                placeholder="Enter your new Category"
-                variant="outlined"
-                fullWidth
-                required
-                onChange={(e) => setCategoryName(e.target.value)}
-              />
-              <Grid container spacing={2}>
-                <Grid xs={12} sm={6} item>
-                  <Button
-                    onClick={onAddHandler}
-                    type="submit"
-                    variant="contained"
-                    color="primary"
-                    fullWidth
-                  >
-                    Add Category
-                  </Button>
+            <form>
+              <Stack
+                spacing={{ xs: 1, sm: 2 }}
+                direction="row"
+                useFlexGap
+                flexWrap="wrap"
+              >
+                <TextField
+                  label="Category"
+                  placeholder="Enter your new Category"
+                  variant="outlined"
+                  fullWidth
+                  required
+                  onChange={(e) => setCategoryName(e.target.value)}
+                />
+                <Grid container spacing={2}>
+                  <Grid xs={12} sm={6} item>
+                    <Button
+                      onClick={onAddHandler}
+                      type="submit"
+                      variant="contained"
+                      color="primary"
+                      fullWidth
+                    >
+                      Add Category
+                    </Button>
+                  </Grid>
+                  <Grid xs={12} sm={6} item>
+                    <Button
+                      onClick={handleClose}
+                      variant="outlined"
+                      color="error"
+                      fullWidth
+                    >
+                      Cancel
+                    </Button>
+                  </Grid>
                 </Grid>
-                <Grid xs={12} sm={6} item>
-                  <Button
-                    onClick={handleClose}
-                    variant="outlined"
-                    color="error"
-                    fullWidth
-                  >
-                    Cancel
-                  </Button>
-                </Grid>
-              </Grid>
-            </Stack>
+              </Stack>
+            </form>
           </Box>
         </Fade>
       </Modal>
