@@ -78,7 +78,7 @@ export default function TransitionsModal() {
                 />
                 <Grid container spacing={2}>
                   <Grid xs={12} sm={6} item>
-                    <Button
+                    {categoryName && <Button
                       onClick={onAddHandler}
                       type="submit"
                       variant="contained"
@@ -86,7 +86,17 @@ export default function TransitionsModal() {
                       fullWidth
                     >
                       Add Category
-                    </Button>
+                    </Button>}
+                    {!categoryName && <Button
+                      onClick={onAddHandler}
+                      type="submit"
+                      variant="contained"
+                      color="primary"
+                      fullWidth
+                      disabled
+                    >
+                      Add Category
+                    </Button>}
                   </Grid>
                   <Grid xs={12} sm={6} item>
                     <Button

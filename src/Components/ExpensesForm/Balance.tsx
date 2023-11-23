@@ -3,11 +3,9 @@ import BalanceModal from "../Modals/BalanceModal";
 import { useSelector } from "react-redux";
 import { RootState } from "../../Redux/Features/store";
 import IncomeLog from "../History/IncomeLog";
-import { Link } from "react-router-dom";
 
 export default function Balance() {
   const Balance = useSelector((state: RootState) => state.Balance.allIncome);
-
 
   const expenses = useSelector(
     (state: RootState) => state.Expenses.allExpenses
@@ -46,9 +44,7 @@ export default function Balance() {
         <IncomeLog />
         <Card
           style={{
-            minWidth: 600,
-            maxWidth: 600,
-            maxHeight: 150,
+            maxWidth: 800,
             margin: "3rem 2%",
             padding: "2rem 1rem",
           }}
@@ -83,13 +79,6 @@ export default function Balance() {
                   Remaining Balance: ${remainingBalance}
                 </Typography>
               )}
-              <Typography align="right" >
-                <Link to="/statistics">
-                  <Button variant="contained" color="success">
-                    Check Statistics
-                  </Button>
-                </Link>
-              </Typography>
             </Grid>
           </Grid>
         </Card>

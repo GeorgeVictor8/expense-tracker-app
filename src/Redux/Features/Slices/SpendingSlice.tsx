@@ -35,9 +35,7 @@ export const SpendingSlice = createSlice({
 export const { addExpense } = SpendingSlice.actions;
 export default SpendingSlice.reducer;
 
-export const calculateSpendingPerCategory = (
-  expenses: Expense[]
-): any=> {
+export const calculateSpendingPerCategory = (expenses: Expense[]): any => {
   const spendingPerCategory = new Map();
 
   expenses.forEach((expense) => {

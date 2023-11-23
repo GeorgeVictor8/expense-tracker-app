@@ -6,12 +6,13 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
-import { IconButton, Typography } from "@mui/material";
+import { Button, IconButton, Typography } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../Redux/Features/store";
 import { ExpensesSlice } from "../../Redux/Features/Slices/ExpensesFormSlice";
 import { useEffect } from "react";
+import { Link } from "react-router-dom";
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -32,6 +33,13 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
     border: 0,
   },
 }));
+
+const handleScrollToTop = () => {
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth",
+  });
+};
 
 export default function CustomizedTables() {
   const dispatch = useDispatch();
@@ -57,7 +65,7 @@ export default function CustomizedTables() {
       style={{
         maxWidth: 800,
         margin: "3rem auto",
-        padding: "0 1rem",
+        padding: "2rem 1rem",
       }}
       sx={{ maxWidth: 800 }}
     >
@@ -119,6 +127,18 @@ export default function CustomizedTables() {
           )}
         </TableBody>
       </Table>
+      {Expense.length !== 0 &&
+      <Typography align="center">
+        <Link to="/statistics">
+          <Button
+            onClick={handleScrollToTop}
+            variant="contained"
+            color="success"
+          >
+            Check Statistics
+          </Button>
+        </Link>
+      </Typography>}
     </TableContainer>
   );
 }
