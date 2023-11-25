@@ -3,15 +3,17 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Live Link to app
-### To be Deployed Yet
+### https://expense-tracker-app-theta.vercel.app/
 
-## Screenshot:
+### App-Screenshot:
 
 ![Expense-Tracker](/src/assets/background/Expense-Tracker.jpg)
+
+### Statistics-Screenshot:
 ![Expense-Tracker-Statistics](/src/assets/background/Expense-Tracker-Statistics.jpg)
 
 
-### Tech Stack
+## Tech Stack
 
 ![redux](https://camo.githubusercontent.com/3a2650b6854cb790e3af41a1cefa87df32efc07aad12d0c0f128a7fbc5998ac3/68747470733a2f2f696d672e736869656c64732e696f2f7374617469632f76313f7374796c653d666f722d7468652d6261646765266d6573736167653d526564757826636f6c6f723d373634414243266c6f676f3d5265647578266c6f676f436f6c6f723d464646464646266c6162656c3d)
 
