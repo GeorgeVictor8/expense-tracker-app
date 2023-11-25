@@ -22,7 +22,7 @@ const style = {
   p: 4,
 };
 
-export default function TransitionsModal() {
+export default function CategoryModal() {
   const dispatch = useDispatch();
   const [categoryName, setCategoryName] = useState("");
 

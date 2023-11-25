@@ -23,7 +23,7 @@ const style = {
   p: 4,
 };
 
-export default function TransitionsModal() {
+export default function BalanceModal() {
   const dispatch = useDispatch();
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
