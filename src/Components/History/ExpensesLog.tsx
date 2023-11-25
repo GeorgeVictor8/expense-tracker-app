@@ -41,7 +41,7 @@ const handleScrollToTop = () => {
   });
 };
 
-export default function CustomizedTables() {
+export default function ExpensesLog() {
   const dispatch = useDispatch();
   const handleDelete = (id: string) => {
     dispatch(

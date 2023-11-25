@@ -21,7 +21,7 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
 }));
 
 
-export default function CustomPaginationActionsTable() {
+export default function IncomeLog() {
   const Balance = useSelector((state: RootState) => state.Balance.allIncome);
 
   return (
